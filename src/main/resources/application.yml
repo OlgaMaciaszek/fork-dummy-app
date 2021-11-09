@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        dummyMapper-in-0:
+          destination: Dummy_Topic_Input
+          group: Dummy_Group_Name
+        dummyMapper-out-0:
+          destination: Dummy_Topic_Ouput
+      kafka:
+        binder:
+          brokers: kafka-01.dev.cloud.ferratum.fe:9092,kafka-02.dev.cloud.ferratum.fe:9092,kafka-03.dev.cloud.ferratum.fe:9092
+          consumer-properties:
+            key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+          producer-properties:
+            key.serializer: org.apache.kafka.common.serialization.StringSerializer
+    function:
+      definition: dummyMapper
